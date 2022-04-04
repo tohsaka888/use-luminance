@@ -3,24 +3,31 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "web-vitals": "^2.1.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.6.3",
+    "react-scripts": "5.0.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
     "@testing-library/user-event": "^13.2.1",
     "@types/jest": "^27.0.1",
     "@types/node": "^16.7.13",
     "@types/react": "^17.0.20",
-    "@types/react-dom": "^17.0.9",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-scripts": "5.0.0",
-    "typescript": "^4.4.2",
-    "web-vitals": "^2.1.0"
+    "@types/react-dom": "^17.0.9"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "export PUBLIC_URL=http://localhost:3000/ && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build:commonjs": "babel src/hooks --out-dir lib/commonjs --extensions '.ts,.tsx' --source-maps",
+    "build:module": "tsc src/hooks/*.tsx --module es2022 --target es5 --jsx 'react' --sourceMap --skipLibCheck --allowSyntheticDefaultImports --outDir lib/module --moduleResolution node",
+    "build:typescript": "tsc src/hooks/*.tsx --declaration --emitDeclarationOnly --jsx 'react'  --skipLibCheck --allowSyntheticDefaultImports  --outDir lib/typescript"
   },
   "eslintConfig": {
     "extends": [
@@ -28,6 +35,14 @@
       "react-app/jest"
     ]
   },
+  "main": "lib/commonjs/index.js",
+  "types": "lib/typescript/index.d.ts",
+  "module": "lib/module/index.js",
+  "source": "src/hooks/index.ts",
+  "files": [
+    "src/hooks",
+    "lib"
+  ],
   "browserslist": {
     "production": [
       ">0.2%",
@@ -39,5 +54,23 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tohsaka888/use-luminance.git"
+  },
+  "keywords": [
+    "react18",
+    "hook",
+    "react",
+    "luminance",
+    "theme"
+  ],
+  "author": "tohsaka888",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tohsaka888/use-luminance/issues"
+  },
+  "homepage": "https://github.com/tohsaka888/use-luminance#readme"
 }
