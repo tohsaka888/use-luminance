@@ -6,7 +6,11 @@
 
 it use the `useDeferredValue` hook to calculate the luminance of a color.
 
-it can alse provide a `useTheme` hook to calculate current theme based on the luminance of `background-color`.
+it can also provide a `useTheme` hook to calculate current theme based on the luminance of `background-color`.
+
+## Tips
+
+this package is only support for React18.To use it,you must upgrade your react version to 18.
 
 ## install
 
@@ -46,6 +50,8 @@ function App() {
 
 - `useLuminance(color: string):number`
 - `useTheme(color: string):'light'|'dark'`
+
+> `color` is a string, it can be a rbg string or a hex color.Be careful,color name is not supported.
 
 ## demo
 
