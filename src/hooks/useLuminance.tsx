@@ -1,9 +1,5 @@
-import React, {
-  useCallback,
-  useEffect,
-  useState,
-  useDeferredValue,
-} from "react";
+import { useCallback, useEffect, useState, useDeferredValue } from "react";
+import type {} from "react/next";
 
 function useLuminance(bgColor: string): number {
   const [luminance, setLuminance] = useState<number>(0);
