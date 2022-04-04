@@ -1,7 +1,13 @@
-import { useCallback, useEffect, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useState,
+  useDeferredValue,
+} from "react";
 
 function useLuminance(bgColor: string): number {
   const [luminance, setLuminance] = useState<number>(0);
+  const deferredColor = useDeferredValue(bgColor);
   const hexToRgb = useCallback((bgColor: string) => {
     let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(bgColor);
     if (result) {
@@ -15,15 +21,14 @@ function useLuminance(bgColor: string): number {
   }, []);
   useEffect(() => {
     let rgb: number[] | string[] = [];
-    console.log(bgColor);
-    if (bgColor?.includes("rgb")) {
-      rgb = bgColor?.match(/\d+(\.\d+)?/g)?.slice(0, 3) as string[];
-    } else if (bgColor?.includes("#")) {
-      rgb = hexToRgb(bgColor);
+    if (deferredColor?.includes("rgb")) {
+      rgb = deferredColor?.match(/\d+(\.\d+)?/g)?.slice(0, 3) as string[];
+    } else if (deferredColor?.includes("#")) {
+      rgb = hexToRgb(deferredColor);
     }
     setLuminance(+rgb[0] * 0.212656 + +rgb[1] * 0.715158 + +rgb[2] * 0.072186);
     console.log(+rgb[0] * 0.212656 + +rgb[1] * 0.715158 + +rgb[2] * 0.072186);
-  }, [bgColor, hexToRgb]);
+  }, [deferredColor, hexToRgb]);
   return luminance / 255;
 }
 
