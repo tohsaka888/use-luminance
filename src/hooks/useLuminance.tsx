@@ -23,7 +23,6 @@ function useLuminance(bgColor: string): number {
       rgb = hexToRgb(deferredColor);
     }
     setLuminance(+rgb[0] * 0.212656 + +rgb[1] * 0.715158 + +rgb[2] * 0.072186);
-    console.log(+rgb[0] * 0.212656 + +rgb[1] * 0.715158 + +rgb[2] * 0.072186);
   }, [deferredColor, hexToRgb]);
   return luminance / 255;
 }
